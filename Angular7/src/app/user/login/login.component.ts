@@ -70,13 +70,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     this.userService.register(signInModel).subscribe(
       (res: any) => {
-        if (res.Succeeded) {
+        if (res.succeeded) {
           this.toaster.success('Registration successfully', 'Peyment Detail Register');
           this.signInFormModel.reset();
           // TODO check redirect after registration!
           this.router.navigateByUrl('/home');
         } else {
-          res.Errors.forEach(element => {
+          res.errors.forEach(element => {
             switch (element.Code) {
               case 'DuplicateUserName':
                 this.toaster.error('Registration failed', `User name

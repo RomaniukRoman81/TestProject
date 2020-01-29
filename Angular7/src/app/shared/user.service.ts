@@ -9,9 +9,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   readonly BaseURL = 'http://localhost:56283/api/';
+  readonly BaseURL1 = 'http://localhost:60702/api/';
 
   register(signInModel: any) {
-    return this.http.post(`${this.BaseURL}ApplicationUser/Register`, signInModel);
+    return this.http.post(`${this.BaseURL1}ApplicationUser/Register`, signInModel);
   }
 
   logIn(logInModel: any) {
@@ -47,5 +48,3 @@ export class UserService {
     }
   }
 }
-
-
