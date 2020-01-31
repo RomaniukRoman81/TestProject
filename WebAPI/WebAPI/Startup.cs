@@ -77,7 +77,7 @@ namespace WebAPI
             }
 
             app.UseCors(buider =>
-            buider.WithOrigins("http://localhost:4200")
+            buider.WithOrigins(Configuration["AplicationSettings:Client_URL"].ToString())
             .AllowAnyHeader()
             .AllowAnyMethod());
 
