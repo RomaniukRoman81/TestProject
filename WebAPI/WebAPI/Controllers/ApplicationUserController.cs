@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -16,11 +17,15 @@ namespace WebAPI.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationSettings _appSettings;
 
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public ApplicationUserController(UserManager<ApplicationUser> userManager,
+                                         SignInManager<ApplicationUser> signInManager,
+                                         IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _appSettings = appSettings.Value;
         }
 
         [HttpPost]
@@ -60,13 +65,13 @@ namespace WebAPI.Controllers
                     {
                         new Claim("UserID", user.Id.ToString())
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(10),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("RomaniukRoman2020")), SecurityAlgorithms.HmacSha256Signature)
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                // 4103
+
                 return Ok(new { token });
             }
             else

@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       },
       err => {
         if (err.status === 400) {
-          this.toaster.error('Incorrect UserName or Password', 'Authentication failed');
+          this.toaster.error('Incorrect UserName or Password.', 'Authentication failed!');
          } else {
            console.log(err);
          }

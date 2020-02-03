@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,13 @@ export class UserService {
   }
 
   logIn(logInModel: any) {
-    return this.http.post(`${this.BaseURL}ApplicationUser/Login`, logInModel);
+    return this.http.post(`${this.BaseURL1}ApplicationUser/Login`, logInModel);
   }
 
   getUserProfile() {
-   // const tokenHeader = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(`${this.BaseURL}UserProfile`);
+    // TODO: remove the line when will implement interceptor
+    // const tokenHeader = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(`${this.BaseURL1}UserProfile`);
   }
 
   roleMatch(allowedRoles): boolean {
