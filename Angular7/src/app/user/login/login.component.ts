@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       },
       err => {
         if (err.status === 400) {
-          this.toaster.error('Incorrect UserName or Password.', 'Authentication failed!');
+          this.toaster.error('Incorrect UserName or Password.', 'Authentication failed:(');
          } else {
            console.log(err);
          }
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.userService.register(signInModel).subscribe(
       (res: any) => {
         if (res.succeeded) {
-          this.toaster.success('Registration successfully', 'Peyment Detail Register');
+          this.toaster.success('Registration successfully', 'Test Project;)');
           this.signInFormModel.reset();
           // TODO check redirect after registration!
           this.router.navigateByUrl('/home');
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
                 break;
 
               default:
-                  this.toaster.error(element.Description, 'Registration failed');
+                  this.toaster.error(element.Description, 'Registration failed:(');
                   break;
             }
           });

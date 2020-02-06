@@ -11,5 +11,7 @@
         public string FullName { get; set; }
 
         public string AboutMe { get; set; }
+
+        public string Role { get; set; }
     }
 }

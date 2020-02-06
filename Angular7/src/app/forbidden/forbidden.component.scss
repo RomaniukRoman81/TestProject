@@ -1,0 +1,20 @@
+::ng-deep  {
+    .card {
+        align-items: center;
+        text-align: center;
+        color: brown;
+        background-color:cadetblue;
+
+        &__img {
+            height: 500px;
+            width: 500px;
+        }
+
+        .card-content {
+            &__text{
+
+                font-size: 40px;
+            }
+        }
+    }
+}

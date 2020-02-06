@@ -38,5 +38,30 @@ namespace WebAPI.Controllers
                 user.AboutMe
             };
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("ForAdmin")]
+        public string GetForAdmin()
+        {
+            return "Test Web mothod for Admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "User")]
+        [Route("ForUser")]
+        public string GetForUser()
+        {
+            return "Test Web mothod for User";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, User")]
+        [Route("ForAdminOrUser")]
+        public string GetForAdminOrUser()
+        {
+            return "Test Web mothod for Admin or User";
+        }
+
     }
 }
