@@ -77,14 +77,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.router.navigateByUrl('/home');
         } else {
           res.errors.forEach(element => {
-            switch (element.Code) {
+            switch (element.code) {
               case 'DuplicateUserName':
                 this.toaster.error('Registration failed', `User name
                                     ${this.signInFormModel.get('UserName').value} is already taken.`);
                 break;
 
               default:
-                  this.toaster.error(element.Description, 'Registration failed:(');
+                  this.toaster.error(element.description, 'Registration failed:(');
                   break;
             }
           });

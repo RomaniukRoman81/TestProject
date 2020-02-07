@@ -5,11 +5,14 @@ namespace WebAPI.Models
 {
     public class AuthenticationContext : IdentityDbContext
     {
-        public AuthenticationContext(DbContextOptions options) : base(options)
+        public AuthenticationContext(DbContextOptions<AuthenticationContext> options) : base(options)
         {
 
         }
 
+
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<PaymentDetail> PaymentDetails { get; set; }
     }
 }
