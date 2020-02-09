@@ -3,41 +3,41 @@
     margin: 0;
     padding: 0;
   }
-  
+
   body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     background: #ededed;
   }
-  
+
   input, button {
     border: none;
     outline: none;
     background: none;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   }
-  
+
   $contW: 900px;
   $imgW: 260px;
   $formW: $contW - $imgW;
   $switchAT: 1.2s;
-  
+
   $inputW: 260px;
   $btnH: 36px;
-  
+
   $diffRatio: ($contW - $imgW) / $contW;
-  
+
   @mixin signUpActive {
     .cont.s--signup & {
       @content;
     }
   }
-  
+
   .tip {
     font-size: 20px;
     margin: 40px auto 50px;
     text-align: center;
   }
-  
+
   .cont {
     overflow: hidden;
     position: relative;
@@ -46,7 +46,7 @@
     margin: 35px auto 100px;
     background: #fff;
   }
-  
+
   .form {
     position: relative;
     width: $formW;
@@ -54,7 +54,7 @@
     transition: transform $switchAT ease-in-out;
     padding: 20px 30px 0;
   }
-  
+
    .sub-cont {
     overflow: hidden;
     position: absolute;
@@ -65,12 +65,12 @@
     padding-left: $imgW;
     background: #fff;
     transition: transform $switchAT ease-in-out;
-  
+
     @include signUpActive {
       transform: translate3d($formW * -1,0,0);
     }
   }
-  
+
   button {
     display: block;
     margin: 0 auto;
@@ -96,7 +96,7 @@
     width: $imgW;
     height: 100%;
     padding-top: 360px;
-  
+
     &:before {
       content: '';
       position: absolute;
@@ -108,7 +108,7 @@
       background-size: cover;
       transition: transform $switchAT ease-in-out;
     }
-  
+
     &:after {
       content: '';
       position: absolute;
@@ -118,13 +118,13 @@
       height: 100%;
       background: rgba(0,0,0,0.6);
     }
-  
+
     @include signUpActive {
       &:before {
         transform: translate3d($formW,0,0);
       }
     }
-  
+
     &__text {
       z-index: 2;
       position: absolute;
@@ -135,33 +135,33 @@
       text-align: center;
       color: #fff;
       transition: transform $switchAT ease-in-out;
-  
+
       h2 {
         margin-bottom: 10px;
         font-weight: normal;
       }
-  
+
       p {
         font-size: 14px;
         line-height: 1.5;
       }
-  
+
       &.m--up {
-  
+
         @include signUpActive {
           transform: translateX($imgW*2);
         }
       }
-  
+
       &.m--in {
         transform: translateX($imgW * -2);
-  
+
         @include signUpActive {
           transform: translateX(0);
         }
       }
     }
-  
+
     &__btn {
       overflow: hidden;
       z-index: 2;
@@ -174,7 +174,7 @@
       text-transform: uppercase;
       font-size: 15px;
       cursor: pointer;
-      
+
       &:after {
         content: '';
         z-index: 2;
@@ -186,7 +186,7 @@
         border: 2px solid #fff;
         border-radius: 30px;
       }
-  
+
       span {
         position: absolute;
         left: 0;
@@ -197,15 +197,15 @@
         width: 100%;
         height: 100%;
         transition: transform $switchAT;
-        
+
         &.m--in {
           transform: translateY($btnH*-2);
-          
+
           @include signUpActive {
             transform: translateY(0);
           }
         }
-        
+
         &.m--up {
           @include signUpActive {
             transform: translateY($btnH*2);
@@ -214,19 +214,19 @@
       }
     }
   }
-  
+
   h2 {
     width: 100%;
     font-size: 26px;
     text-align: center;
   }
-  
+
   label {
     display: block;
     width: $inputW;
     margin: 5px auto 0;
     text-align: center;
-  
+
     &.text-danger {
       font-size: 12px;
     }
@@ -236,7 +236,7 @@
     //   text-transform: uppercase;
     // }
   }
-  
+
   input {
     display: block;
     width: 50%;
@@ -247,34 +247,34 @@
     border-bottom: 1px solid rgba(0,0,0,0.4);
     text-align: center;
   }
-  
+
   .forgot-pass {
     margin-top: 15px;
     text-align: center;
     font-size: 12px;
     color: #cfcfcf;
   }
-  
+
   .submit {
     margin-top: 40px;
     margin-bottom: 20px;
     background: #d4af7a;
     text-transform: uppercase;
   }
-  
+
   .fb-btn {
     border: 2px solid #d3dae9;
     color: darken(#d3dae9, 20%);
-  
+
     span {
       font-weight: bold;
       color: darken(#768cb6, 20%);
     }
   }
-  
+
   .sign-in {
     transition-timing-function: ease-out;
-  
+
     @include signUpActive {
       transition-timing-function: ease-in-out;
       transition-duration: $switchAT;
@@ -284,10 +284,10 @@
         margin-top: 165px;
     }
   }
-  
+
   .sign-up {
     transform: translate3d($contW * -1,0,0);
-  
+
     @include signUpActive {
       transform: translate3d(0,0,0);
     }
