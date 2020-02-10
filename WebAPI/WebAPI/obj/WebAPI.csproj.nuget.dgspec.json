@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\QIT-1\\Source\\FirstRepository\\WebAPI\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\QIT-1\\Documents\\TestProject\\WebAPI\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\QIT-1\\Source\\FirstRepository\\WebAPI\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\QIT-1\\Documents\\TestProject\\WebAPI\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\QIT-1\\Source\\FirstRepository\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\QIT-1\\Documents\\TestProject\\WebAPI\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\QIT-1\\Source\\FirstRepository\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectPath": "C:\\Users\\QIT-1\\Documents\\TestProject\\WebAPI\\WebAPI\\WebAPI.csproj",
         "packagesPath": "C:\\Users\\QIT-1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\QIT-1\\Source\\FirstRepository\\WebAPI\\WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\QIT-1\\Documents\\TestProject\\WebAPI\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -57,6 +57,16 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -65,7 +75,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.4, )"
+              "version": "[2.2.0, )"
             }
           },
           "imports": [
