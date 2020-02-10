@@ -3,15 +3,15 @@
     <form [formGroup]="logInFormModel" autocomplete="off">
       <h2>Welcome back,</h2>
           <label>User Name</label>
-          <input formControlName="UserName">
-          <label class="text-danger" *ngIf="logInFormModel.get('UserName').touched 
-                                            && logInFormModel.get('UserName').errors?.required">This field is mandatory.</label>
+          <input formControlName="userName">
+          <label class="text-danger" *ngIf="logInFormModel.get('userName').touched
+                                            && logInFormModel.get('userName').errors?.required">This field is mandatory.</label>
         <label>Password</label>
-        <input type="password" class="form-control" formControlName="Password">
-        <label class="text-danger" *ngIf="logInFormModel.get('Password').touched 
-                                          && logInFormModel.get('Password').errors?.required">This field is mandatory. </label>
-        <label class="text-danger" *ngIf="logInFormModel.get('Password').touched 
-                                          && logInFormModel.get('Password').errors?.minlength">Minimum 4 characters required.</label>
+        <input type="password" class="form-control" formControlName="password">
+        <label class="text-danger" *ngIf="logInFormModel.get('password').touched
+                                          && logInFormModel.get('password').errors?.required">This field is mandatory. </label>
+        <label class="text-danger" *ngIf="logInFormModel.get('password').touched
+                                          && logInFormModel.get('password').errors?.minlength">Minimum 4 characters required.</label>
 
         <button type="button" (click)="logIn()" [disabled]="logInFormModel.invalid" class="submit">Sign In</button>
         <!-- <button type="button" class="fb-btn">Connect with <span>facebook</span></button> -->
@@ -37,37 +37,37 @@
       <form [formGroup]="signInFormModel" autocomplete="off">
           <div class="required">
             <label>User Name</label>
-            <input class="form-control" formControlName="UserName">
-            <label class="text-danger" *ngIf="signInFormModel.get('UserName').touched 
-                                              && signInFormModel.get('UserName').errors">This field is mandatory.</label>
+            <input class="form-control" formControlName="userName">
+            <label class="text-danger" *ngIf="signInFormModel.get('userName').touched
+                                              && signInFormModel.get('userName').errors">This field is mandatory.</label>
           </div>
           <div>
             <label>Email</label>
-            <input class="form-control" formControlName="Email">
-            <label class="text-danger" *ngIf="signInFormModel.get('Email').touched 
-                                              && signInFormModel.get('Email').errors">Invalid email address.</label>
+            <input class="form-control" formControlName="email">
+            <label class="text-danger" *ngIf="signInFormModel.get('email').touched
+                                              && signInFormModel.get('email').errors">Invalid email address.</label>
           </div>
           <div>
             <label>Full Name</label>
-            <input class="form-control" formControlName="FullName">
+            <input class="form-control" formControlName="fullName">
           </div>
-          <div formGroupName="Passwords">
+          <div formGroupName="passwords">
             <div class="required">
               <label>Password</label>
-              <input type="password" class="form-control" formControlName="Password">
-              <label class="text-danger" *ngIf="signInFormModel.get('Passwords.Password').touched 
-                                                && signInFormModel.get('Passwords.Password').errors">This field is mandatory. </label>
-              <label class="text-danger" *ngIf="signInFormModel.get('Passwords.Password').touched 
-                                          && signInFormModel.get('Passwords.Password').errors?.minlength">Minimum 4 characters required.</label>
+              <input type="password" class="form-control" formControlName="password">
+              <label class="text-danger" *ngIf="signInFormModel.get('passwords.password').touched
+                                                && signInFormModel.get('passwords.password').errors">This field is mandatory. </label>
+              <label class="text-danger" *ngIf="signInFormModel.get('passwords.password').touched
+                                          && signInFormModel.get('passwords.password').errors?.minlength">Minimum 4 characters required.</label>
             </div>
             <div class="required">
               <label>Confirm Password</label>
-              <input type="password" class="form-control" formControlName="ConfirmPassword">
-              <label class="text-danger" *ngIf="signInFormModel.get('Passwords.ConfirmPassword').touched 
-                                          && signInFormModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</label>
-    
-              <label class="text-danger" *ngIf="signInFormModel.get('Passwords.ConfirmPassword').touched 
-                                          && signInFormModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm password does not match.</label>
+              <input type="password" class="form-control" formControlName="confirmPassword">
+              <label class="text-danger" *ngIf="signInFormModel.get('passwords.confirmPassword').touched
+                                          && signInFormModel.get('passwords.confirmPassword').errors?.required">This field is mandatory.</label>
+
+              <label class="text-danger" *ngIf="signInFormModel.get('passwords.confirmPassword').touched
+                                          && signInFormModel.get('passwords.confirmPassword').errors?.passwordMismatch">Confirm password does not match.</label>
             </div>
           </div>
         </form>
@@ -76,4 +76,4 @@
     </div>
   </div>
 </div>
-// source https://codepen.io/suez/pen/RpNXOR
+ <!-- source https://codepen.io/suez/pen/RpNXOR -->

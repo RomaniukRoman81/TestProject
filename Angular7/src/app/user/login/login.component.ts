@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   logIn() {
     const logInModel = {
-      UserName: this.logInFormModel.value.UserName,
-      Password: this.logInFormModel.value.Password
+      UserName: this.logInFormModel.value.userName,
+      Password: this.logInFormModel.value.password
     };
 
     this.userService.logIn(logInModel).subscribe(
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       },
       err => {
         if (err.status === 400) {
-          this.toaster.error('Incorrect UserName or Password.', 'Authentication failed:(');
+          this.toaster.error('Incorrect userName or password.', 'Authentication failed:(');
          } else {
            console.log(err);
          }
@@ -61,11 +61,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   signIn() {
     const signInModel = {
-      UserName: this.signInFormModel.value.UserName,
-      Email: this.signInFormModel.value.Email,
-      FullName: this.signInFormModel.value.FullName,
-      Password: this.signInFormModel.value.Passwords.Password,
-      ConfirmPassword: this.signInFormModel.value.Passwords.ConfirmPassword
+      UserName: this.signInFormModel.value.userName,
+      Email: this.signInFormModel.value.email,
+      FullName: this.signInFormModel.value.fullName,
+      Password: this.signInFormModel.value.passwords.password,
+      Confirmpassword: this.signInFormModel.value.passwords.confirmPassword
     };
 
     this.userService.register(signInModel).subscribe(
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             switch (element.Code) {
               case 'DuplicateUserName':
                 this.toaster.error('Registration failed', `User name
-                                    ${this.signInFormModel.get('UserName').value} is already taken.`);
+                                    ${this.signInFormModel.get('userName').value} is already taken.`);
                 break;
 
               default:
@@ -98,19 +98,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   private createlogInForm(): void {
     this.logInFormModel = this.fb.group({
-      UserName: ['', Validators.required],
-      Password: ['', [Validators.required, Validators.minLength(4)]],
+      userName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
 
   private createSignInForm(): void {
     this.signInFormModel = this.fb.group({
-      UserName: ['', Validators.required],
-      Email: ['', Validators.email],
-      FullName: [''],
-      Passwords: this.fb.group({
-        Password: ['', [Validators.required, Validators.minLength(4)]],
-        ConfirmPassword: ['', Validators.required]
+      userName: ['', Validators.required],
+      email: ['', Validators.email],
+      fullName: [''],
+      passwords: this.fb.group({
+        password: ['', [Validators.required, Validators.minLength(4)]],
+        confirmPassword: ['', Validators.required]
       }, {validator: this.userService.comparePasswords})
     });
   }

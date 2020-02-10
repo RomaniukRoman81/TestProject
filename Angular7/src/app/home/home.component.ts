@@ -21,12 +21,12 @@ export class HomeComponent implements OnInit {
     this.userService.getUserProfile().subscribe(
       (res: any) => {
         console.log('test data', res);
-        this.userFullName = res.fullName;
+        this.userFullName = res.FullName;
         this.userDetailsFormModel.setValue({
-         UserName: res.userName,
-         FullName: res.fullName,
-         Email: res.email,
-         AboutMe: res.aboutMe
+         UserName: res.UserName,
+         FullName: res.FullName,
+         Email: res.Email,
+         AboutMe: res.AboutMe
         });
       },
       err => {

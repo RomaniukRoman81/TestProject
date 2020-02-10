@@ -40,10 +40,10 @@ export class UserService {
   }
 
   comparePasswords(fg: FormGroup) {
-    const confirmPasswordCtrl = fg.get('ConfirmPassword');
+    const confirmPasswordCtrl = fg.get('confirmPassword');
 
     if (confirmPasswordCtrl.errors == null || 'passwordMismatch' in confirmPasswordCtrl.errors) {
-        if (fg.get('Password').value !== confirmPasswordCtrl.value) {
+        if (fg.get('password').value !== confirmPasswordCtrl.value) {
             confirmPasswordCtrl.setErrors({passwordMismatch: true});
         } else { confirmPasswordCtrl.setErrors(null); }
     }
