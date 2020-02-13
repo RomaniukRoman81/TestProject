@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
     public class PaymentDetailController : ControllerBase
     {
         private readonly AuthenticationContext _context;
-        // test coomerkjgfp'qe
+
         public PaymentDetailController(AuthenticationContext context)
         {
             _context = context;

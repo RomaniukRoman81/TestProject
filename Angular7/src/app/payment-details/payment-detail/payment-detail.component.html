@@ -3,13 +3,13 @@
     <div class="input-group">
       <div class="input-group-prepend">
         <div class="input-group-text bg-white">
-          <i class="far fa-user-circle" [class.red-icon]="CardOvnerName.invalid && CardOvnerName.touched" [class.green-icon]="CardOvnerName.valid"></i>
+          <i class="far fa-user-circle" [class.red-icon]="CardOwnerName.invalid && CardOwnerName.touched" [class.green-icon]="CardOwnerName.valid"></i>
         </div>
       </div>
-      <input hidden type="text" name="PMId" #CardOvnerName="ngModel" [(ngModel)]="paymentDetailService.formData.PMId"
+      <input hidden type="text" name="Id" #Id="ngModel" [(ngModel)]="paymentDetailService.formData.Id"
       class="form-control">
 
-      <input type="text" name="CardOvnerName" #CardOvnerName="ngModel" [(ngModel)]="paymentDetailService.formData.CardOvnerName"
+      <input type="text" name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="paymentDetailService.formData.CardOwnerName"
         class="form-control" placeholder="Card Owner Name" required>
     </div>
   </div>

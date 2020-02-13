@@ -1,6 +1,6 @@
 export class PaymentDetail {
-    PMId: number;
-    CardOvnerName: string;
+    Id: number;
+    CardOwnerName: string;
     CardNumber: string;
     ExpirationDate: string;
     CVV: string;

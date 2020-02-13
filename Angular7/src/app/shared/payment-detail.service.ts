@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaymentDetailService {
   formData: PaymentDetail = {
-    PMId: 0,
-    CardOvnerName: '',
+    Id: 0,
+    CardOwnerName: '',
     CardNumber: '',
     ExpirationDate: '',
     CVV: ''
@@ -16,23 +16,25 @@ export class PaymentDetailService {
   listPaymentDetails: PaymentDetail[];
 
   readonly rootURL = 'http://localhost:56283/api/';
+  readonly rootURL1 = 'http://localhost:60702/api/';
+
 
   constructor(private http: HttpClient) { }
 
   postPaymentDetail() {
-   return this.http.post(`${this.rootURL}PaymentDetail`, this.formData);
+   return this.http.post(`${this.rootURL1}PaymentDetail`, this.formData);
   }
 
   putPaymentDetail() {
-   return this.http.put(`${this.rootURL}PaymentDetail/${this.formData.PMId}`, this.formData);
+   return this.http.put(`${this.rootURL1}PaymentDetail/${this.formData.Id}`, this.formData);
   }
 
   deletePaymentDetail(id: number) {
-   return this.http.delete(`${this.rootURL}PaymentDetail/${id}`);
+   return this.http.delete(`${this.rootURL1}PaymentDetail/${id}`);
   }
 
   refreshPaymentDetailsList() {
-    this.http.get(`${this.rootURL}PaymentDetail`)
+    this.http.get(`${this.rootURL1}PaymentDetail`)
       .subscribe(
         res => this.listPaymentDetails = res as PaymentDetail[]
       );
