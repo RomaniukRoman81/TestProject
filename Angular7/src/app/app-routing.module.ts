@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ImagesComponent } from './images/images.component';
+import { ImageComponent } from './images/image/image.component';
+import { ImageListComponent } from './images/image-list/image-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user/login', pathMatch: 'full'},
@@ -14,6 +17,13 @@ const routes: Routes = [
     path: 'user', component: UserComponent,
     children: [
       { path: 'login', component: LoginComponent }
+    ]
+  },
+  {
+    path: 'image', component: ImagesComponent,
+    children: [
+      { path: 'upload', component: ImageComponent},
+      { path: 'list', component: ImageListComponent}
     ]
   },
   { path: 'paymentDetail', component: PaymentDetailsComponent, canActivate: [AuthGuard] },

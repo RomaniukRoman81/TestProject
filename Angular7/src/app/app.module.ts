@@ -18,6 +18,9 @@ import { HomeComponent } from './home/home.component';
 import { AuthIntrceptor } from './auth/auth.iterceptor';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ImagesComponent } from './images/images.component';
+import { ImageComponent } from './images/image/image.component';
+import { ImageListComponent } from './images/image-list/image-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     LoginComponent,
     HomeComponent,
     AdminPanelComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ImagesComponent,
+    ImageComponent,
+    ImageListComponent
   ],
   imports: [
     BrowserModule,
