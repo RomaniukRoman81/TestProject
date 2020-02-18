@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ImageService } from 'src/app/shared/image.service';
+import 'firebase/storage';
 
 @Component({
   selector: 'app-image',
@@ -8,9 +12,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ImageComponent implements OnInit {
 
-  imgSrc = 'http://placehold.jp/24/cccccc/ffffff/250x50.png?text=click here to upload';
-  selectedImage: null;
-  isSubmitted = false;
+  imgSrc: string;
+  selectedImage: any;
+  isSubmitted: boolean;
 
   formTemplate = new FormGroup({
     caption: new FormControl('', Validators.required),
@@ -18,29 +22,55 @@ export class ImageComponent implements OnInit {
     imageUrl: new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor(private storage: AngularFireStorage, private imageService: ImageService) { }
 
   ngOnInit() {
+    this.resetForm();
+    this.imageService.getImageDetailList();
   }
 
   get formControls() {
     return this.formTemplate.controls;
   }
 
-  onSubmit(formValue) {
-    this.isSubmitted = true;
-  }
-
   showPreview(event: any) {
     if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files[0]) {
-      console.log('check event=>', event);
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
-     } else {
-       this.imgSrc = 'http://placehold.jp/24/cccccc/ffffff/250x50.png?text=click here to upload';
-       this.selectedImage = null;
-     }
+    } else {
+      this.imgSrc = 'http://placehold.jp/24/cccccc/ffffff/250x50.png?text=click here to upload';
+      this.selectedImage = null;
+    }
+  }
+
+  onSubmit(formValue) {
+    this.isSubmitted = true;
+    if (this.formTemplate.valid && this.selectedImage != null) {
+      const filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            formValue.imageUrl = url;
+            this.imageService.insertImageDetails(formValue);
+            this.resetForm();
+          });
+        })
+      ).subscribe();
+    }
+  }
+
+  resetForm() {
+    this.formTemplate.reset();
+    this.formTemplate.setValue({
+      caption: '',
+      imageUrl: '',
+      category: 'Animal'
+    });
+    this.imgSrc = 'http://placehold.jp/24/cccccc/ffffff/250x50.png?text=click here to upload';
+    this.selectedImage = null;
+    this.isSubmitted = false;
   }
 }

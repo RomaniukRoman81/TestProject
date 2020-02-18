@@ -4,9 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -26,6 +25,7 @@ import { ImagesComponent } from './images/images.component';
 import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
 import { environment } from '../environments/environment';
+import { ImageService } from './shared/image.service';
 
 @NgModule({
   declarations: [
@@ -53,10 +53,11 @@ import { environment } from '../environments/environment';
     }),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [PaymentDetailService,
+              ImageService,
               UserService, {
                 provide: HTTP_INTERCEPTORS,
                 useClass: AuthIntrceptor,
