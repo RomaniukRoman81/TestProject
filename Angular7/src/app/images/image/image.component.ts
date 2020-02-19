@@ -26,7 +26,7 @@ export class ImageComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.imageService.getImageDetailList();
+    this.imageService.getImagesDetailList();
   }
 
   get formControls() {

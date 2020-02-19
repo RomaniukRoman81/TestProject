@@ -7,16 +7,15 @@ import 'firebase/database';
   providedIn: 'root'
 })
 export class ImageService {
-  imageDetailList: AngularFireList<any>;
+  imagesDetailList: AngularFireList<any>;
 
   constructor(private fireBase: AngularFireDatabase) { }
 
-  getImageDetailList() {
-    this.imageDetailList = this.fireBase.list('/Animal');
-    console.log('get list images =>', this.imageDetailList);
+  getImagesDetailList() {
+    this.imagesDetailList = this.fireBase.list('/imageDetailList');
   }
 
   insertImageDetails(imageDetails) {
-    this.imageDetailList.push(imageDetails);
+    this.imagesDetailList.push(imageDetails);
   }
 }

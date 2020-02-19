@@ -26,6 +26,7 @@ import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
 import { environment } from '../environments/environment';
 import { ImageService } from './shared/image.service';
+import { Constants } from './constants';
 
 @NgModule({
   declarations: [
@@ -56,13 +57,16 @@ import { ImageService } from './shared/image.service';
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
-  providers: [PaymentDetailService,
-              ImageService,
-              UserService, {
-                provide: HTTP_INTERCEPTORS,
-                useClass: AuthIntrceptor,
-                multi: true
-              }],
+  providers: [
+    ImageService,
+    UserService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthIntrceptor,
+      multi: true
+    },
+    PaymentDetailService,
+    Constants
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
