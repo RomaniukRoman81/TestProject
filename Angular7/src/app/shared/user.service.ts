@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Constants } from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
-  readonly BaseURL = 'http://localhost:56283/api/';
-  readonly BaseURL1 = 'http://localhost:60702/api/';
+  constructor(private http: HttpClient,
+              private readonly constants: Constants) { }
 
   register(signInModel: any) {
-    return this.http.post(`${this.BaseURL1}ApplicationUser/Register`, signInModel);
+    return this.http.post(this.constants.apiRoutes.workBaseUrl + this.constants.apiRoutes.userRegisterUrl, signInModel);
   }
 
   logIn(logInModel: any) {
-    return this.http.post(`${this.BaseURL1}ApplicationUser/Login`, logInModel);
+    return this.http.post(this.constants.apiRoutes.workBaseUrl + this.constants.apiRoutes.userLoginUrl, logInModel);
   }
 
   getUserProfile() {
-    // TODO: remove the line when will implement interceptor
-    // const tokenHeader = new HttpHeaders({Authorization: 'Bearer ' + localStorage.getItem('token')});
-    return this.http.get(`${this.BaseURL1}UserProfile`);
+    return this.http.get(this.constants.apiRoutes.workBaseUrl + this.constants.apiRoutes.userProfileUrl);
   }
 
   roleMatch(allowedRoles): boolean {

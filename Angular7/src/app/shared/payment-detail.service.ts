@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PaymentDetail } from './payment-detail.model';
 import { HttpClient } from '@angular/common/http';
+import { Constants } from '../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -15,26 +16,24 @@ export class PaymentDetailService {
   };
   listPaymentDetails: PaymentDetail[];
 
-  readonly rootURL = 'http://localhost:56283/api/';
-  readonly rootURL1 = 'http://localhost:60702/api/';
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private readonly constants: Constants) { }
 
   postPaymentDetail() {
-   return this.http.post(`${this.rootURL1}PaymentDetail`, this.formData);
+   return this.http.post(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, this.formData);
   }
 
   putPaymentDetail() {
-   return this.http.put(`${this.rootURL1}PaymentDetail/${this.formData.Id}`, this.formData);
+   return this.http.put(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}
+                         ${this.formData.Id}`, this.formData);
   }
 
   deletePaymentDetail(id: number) {
-   return this.http.delete(`${this.rootURL1}PaymentDetail/${id}`);
+   return this.http.delete(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}${id}`);
   }
 
   refreshPaymentDetailsList() {
-    this.http.get(`${this.rootURL1}PaymentDetail`)
+    this.http.get(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`)
       .subscribe(
         res => this.listPaymentDetails = res as PaymentDetail[]
       );

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import 'firebase/database';
+import { Constants } from '../constants';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class ImageService {
   constructor(private fireBase: AngularFireDatabase) { }
 
   getImagesDetailList() {
-    this.imagesDetailList = this.fireBase.list('/imageDetailList');
+    this.imagesDetailList = this.fireBase.list(Constants.fireBase.imageDetailListUrl);
   }
 
   insertImageDetails(imageDetails) {

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageService } from 'src/app/shared/image.service';
+import { Constants } from 'src/app/constants';
 import 'firebase/storage';
 
 @Component({
@@ -40,7 +41,7 @@ export class ImageComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
     } else {
-      this.imgSrc = 'http://placehold.jp/24/cccccc/ffffff/250x50.png?text=click here to upload';
+      this.imgSrc = Constants.angularImages.imgSrcPlaceholder;
       this.selectedImage = null;
     }
   }
@@ -69,7 +70,7 @@ export class ImageComponent implements OnInit {
       imageUrl: '',
       category: 'Animal'
     });
-    this.imgSrc = 'http://placehold.jp/24/cccccc/ffffff/250x50.png?text=click here to upload';
+    this.imgSrc = Constants.angularImages.imgSrcPlaceholder;
     this.selectedImage = null;
     this.isSubmitted = false;
   }

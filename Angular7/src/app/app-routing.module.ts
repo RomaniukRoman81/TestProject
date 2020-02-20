@@ -10,27 +10,57 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ImagesComponent } from './images/images.component';
 import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
+import { Constants } from './constants';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user/login', pathMatch: 'full'},
   {
-    path: 'user', component: UserComponent,
+    path: '',
+    redirectTo: Constants.angularRoutes.redirectTo,
+    pathMatch: Constants.angularRoutes.fullPath
+  },
+  {
+    path: Constants.angularRoutes.user,
+    component: UserComponent,
     children: [
-      { path: 'login', component: LoginComponent }
+      {
+        path: Constants.angularRoutes.login,
+        component: LoginComponent
+      }
     ]
   },
   {
-    path: 'image', component: ImagesComponent,
+    path: Constants.angularRoutes.image, component: ImagesComponent,
     children: [
-      { path: 'upload', component: ImageComponent},
-      { path: 'list', component: ImageListComponent}
+      {
+        path: Constants.angularRoutes.upload,
+        component: ImageComponent
+      },
+      {
+        path: Constants.angularRoutes.list,
+        component: ImageListComponent
+      }
     ]
   },
-  { path: 'paymentDetail', component: PaymentDetailsComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'adminPanel', component: AdminPanelComponent, canActivate: [AuthGuard],
-                        data: { permittedRoles: ['Admin'] }}
+  {
+    path: Constants.angularRoutes.paymentDetail,
+    component: PaymentDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: Constants.angularRoutes.home,
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: Constants.angularRoutes.forbidden,
+    component: ForbiddenComponent
+  },
+  { path: Constants.angularRoutes.adminPanel,
+    component: AdminPanelComponent,
+    canActivate: [AuthGuard],
+    data: {
+      permittedRoles: [Constants.roles.admin]
+    }
+  }
 ];
 
 @NgModule({
