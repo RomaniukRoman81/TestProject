@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebAPI.Migrations
+namespace TestProject.Data.Migrations
 {
     public partial class AddedPatmentDetail : Migration
     {

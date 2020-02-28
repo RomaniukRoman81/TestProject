@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace TestProject.Data.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

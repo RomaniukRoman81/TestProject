@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Models
+﻿namespace TestProject.Data.Models
 {
     public class ApplicationSettings
     {

@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Models;
+using TestProject.Data.Models;
 
-namespace WebAPI.Controllers
+namespace TestProject.Data.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

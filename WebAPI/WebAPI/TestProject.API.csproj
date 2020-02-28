@@ -17,4 +17,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TestProject.Controllers\TestProject.Controllers.csproj" />
+    <ProjectReference Include="..\TestProject.Data\TestProject.Data.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -10,9 +10,9 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Text;
-using WebAPI.Models;
+using TestProject.Data.Models;
 
-namespace WebAPI
+namespace TestProject.Data
 {
     public class Startup
     {

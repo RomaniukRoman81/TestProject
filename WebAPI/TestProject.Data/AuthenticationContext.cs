@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAPI.Models
+namespace TestProject.Data.Models
 {
     public class AuthenticationContext : IdentityDbContext
     {

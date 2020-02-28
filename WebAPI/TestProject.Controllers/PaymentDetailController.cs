@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPI.Models;
+using TestProject.Data.Models;
 
-namespace WebAPI.Controllers
+namespace TestProject.Data.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

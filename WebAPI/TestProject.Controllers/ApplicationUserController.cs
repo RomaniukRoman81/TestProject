@@ -7,9 +7,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using WebAPI.Models;
+using TestProject.Data.Models;
 
-namespace WebAPI.Controllers
+namespace TestProject.Data.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

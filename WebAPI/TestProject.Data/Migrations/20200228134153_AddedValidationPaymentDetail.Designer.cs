@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAPI.Models;
+using TestProject.Data.Models;
 
-namespace WebAPI.Migrations
+namespace TestProject.Data.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20200228134153_AddedValidationPaymentDetail")]
+    partial class AddedValidationPaymentDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,7 +191,7 @@ namespace WebAPI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.PaymentDetail", b =>
+            modelBuilder.Entity("TestProject.Data.Models.PaymentDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -197,26 +199,30 @@ namespace WebAPI.Migrations
 
                     b.Property<string>("CVV")
                         .IsRequired()
-                        .HasColumnType("varchar(3)");
+                        .HasColumnType("varchar(3)")
+                        .HasMaxLength(3);
 
                     b.Property<string>("CardNumber")
                         .IsRequired()
-                        .HasColumnType("varchar(16)");
+                        .HasColumnType("varchar(16)")
+                        .HasMaxLength(16);
 
                     b.Property<string>("CardOwnerName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("ExpirationDate")
                         .IsRequired()
-                        .HasColumnType("varchar(5)");
+                        .HasColumnType("varchar(5)")
+                        .HasMaxLength(5);
 
                     b.HasKey("Id");
 
                     b.ToTable("PaymentDetails");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.ApplicationUser", b =>
+            modelBuilder.Entity("TestProject.Data.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 

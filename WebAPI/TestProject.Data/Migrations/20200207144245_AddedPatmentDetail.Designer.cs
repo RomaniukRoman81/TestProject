@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAPI.Models;
+using TestProject.Data.Models;
 
-namespace WebAPI.Migrations
+namespace TestProject.Data.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
     [Migration("20200207144245_AddedPatmentDetail")]
