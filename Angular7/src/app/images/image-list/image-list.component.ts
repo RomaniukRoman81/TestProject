@@ -20,10 +20,6 @@ export class ImageListComponent implements OnInit {
         this.imagesList = list.map(item => item.payload.val());
         this.rowIndexArray = Array.from(Array(Math.ceil((this.imagesList.length + 1) / 3)).keys());
         console.log('list data =>', this.imagesList);
-      },
-      err => {
-        console.log('Error get details list', err);
-      }
-    );
+      });
   }
 }

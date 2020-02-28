@@ -1,6 +1,6 @@
 <table class="table table-hover">
     <tr *ngFor="let pd of paymentDetailService.listPaymentDetails">
-        <td (click)="populateForm(pd)">{{ pd.CardOwnerName }}555</td>
+        <td (click)="populateForm(pd)">{{ pd.CardOwnerName }}</td>
         <td (click)="populateForm(pd)">{{ pd.CardNumber }}</td>
         <td (click)="populateForm(pd)">{{ pd.ExpirationDate }}</td>
         <td>

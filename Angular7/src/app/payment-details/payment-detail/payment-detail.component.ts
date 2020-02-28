@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class PaymentDetailComponent implements OnInit {
   model: PaymentDetail;
   constructor(readonly paymentDetailService: PaymentDetailService,
-              private toaster: ToastrService) {  }
+              private toasterService: ToastrService) {  }
 
   ngOnInit() {
    // this.model = this.paymentDetailService.formData;
@@ -28,28 +28,20 @@ export class PaymentDetailComponent implements OnInit {
 
   insertForm(form: NgForm) {
     this.paymentDetailService.postPaymentDetail().subscribe(
-      res => {
+      () => {
         this.resetForm(form);
-        this.toaster.info('Created successfully', 'Peyment Detail Register');
+        this.toasterService.info('Created successfully', 'Peyment Detail Register');
         this.paymentDetailService.refreshPaymentDetailsList();
-      },
-      err => {
-        console.log('Error postPaymentDetail', err);
-      }
-    );
+      });
   }
 
   updateForm(form: NgForm) {
     this.paymentDetailService.putPaymentDetail().subscribe(
-      res => {
+      () => {
         this.resetForm(form);
-        this.toaster.info('Updated successfully', 'Peyment Detail Register');
+        this.toasterService.info('Updated successfully', 'Peyment Detail Register');
         this.paymentDetailService.refreshPaymentDetailsList();
-      },
-      err => {
-        console.log('Error postPaymentDetail', err);
-      }
-    );
+      });
   }
 
   resetForm(form?: NgForm) {

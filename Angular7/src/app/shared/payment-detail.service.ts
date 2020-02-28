@@ -24,12 +24,12 @@ export class PaymentDetailService {
   }
 
   putPaymentDetail() {
-   return this.http.put(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}
+   return this.http.put(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}/
                          ${this.formData.Id}`, this.formData);
   }
 
   deletePaymentDetail(id: number) {
-   return this.http.delete(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}${id}`);
+   return this.http.delete(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}/${id}`);
   }
 
   refreshPaymentDetailsList() {

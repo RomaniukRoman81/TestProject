@@ -10,7 +10,6 @@ namespace WebAPI.Models
 
         }
 
-
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DbSet<PaymentDetail> PaymentDetails { get; set; }

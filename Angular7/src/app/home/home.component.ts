@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.createUserDetailsForm();
     this.userService.getUserProfile().subscribe(
       (res: any) => {
-        console.log('test data', res);
         this.userFullName = res.FullName;
         this.userDetailsFormModel.setValue({
          UserName: res.UserName,
@@ -28,11 +27,7 @@ export class HomeComponent implements OnInit {
          Email: res.Email,
          AboutMe: res.AboutMe
         });
-      },
-      err => {
-        console.log('Error from home component', err);
-      }
-    );
+      });
   }
 
   onLogout() {

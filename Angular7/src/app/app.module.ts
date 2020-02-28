@@ -27,6 +27,7 @@ import { ImageListComponent } from './images/image-list/image-list.component';
 import { environment } from '../environments/environment';
 import { ImageService } from './shared/image.service';
 import { Constants } from './constants';
+import { HttpErrorInterceptor } from './http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,10 +60,17 @@ import { Constants } from './constants';
   ],
   providers: [
     ImageService,
-    UserService, {
+    UserService,
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthIntrceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+
     },
     PaymentDetailService,
     Constants

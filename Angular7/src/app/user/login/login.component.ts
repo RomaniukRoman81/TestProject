@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(public userService: UserService,
               private router: Router,
-              private toaster: ToastrService,
+              private toasterService: ToastrService,
               private fb: FormBuilder,
               private elementRef: ElementRef) { }
 
@@ -48,15 +48,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         localStorage.setItem('token', res.token);
         this.logInFormModel.reset();
         this.router.navigateByUrl('/home');
-      },
-      err => {
-        if (err.status === 400) {
-          this.toaster.error('Incorrect userName or password.', 'Authentication failed:(');
-         } else {
-           console.log(err);
-         }
-      }
-    );
+      });
   }
 
   signIn() {
@@ -71,29 +63,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.userService.register(signInModel).subscribe(
       (res: any) => {
         if (res.Succeeded) {
-          this.toaster.success('Registration successfully', 'Test Project;)');
+          this.toasterService.success('Registration successfully', 'Test Project;)');
           this.signInFormModel.reset();
           // TODO check redirect after registration!
           this.router.navigateByUrl('/home');
-        } else {
-          res.Errors.forEach(element => {
-            switch (element.Code) {
-              case 'DuplicateUserName':
-                this.toaster.error('Registration failed', `User name
-                                    ${this.signInFormModel.get('userName').value} is already taken.`);
-                break;
-
-              default:
-                  this.toaster.error(element.Description, 'Registration failed:(');
-                  break;
-            }
-          });
         }
-      },
-      err => {
-        console.log('Error from register', err);
-      }
-    );
+      });
   }
 
   private createlogInForm(): void {

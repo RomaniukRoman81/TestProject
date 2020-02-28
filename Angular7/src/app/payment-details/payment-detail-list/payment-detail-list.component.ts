@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 import { PaymentDetail } from 'src/app/shared/payment-detail.model';
-import { error } from 'util';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class PaymentDetailListComponent implements OnInit {
 
   constructor( readonly paymentDetailService: PaymentDetailService,
-               private toaster: ToastrService) { }
+               private toasterService: ToastrService) { }
 
   ngOnInit() {
     this.paymentDetailService.refreshPaymentDetailsList();
@@ -25,14 +24,10 @@ export class PaymentDetailListComponent implements OnInit {
   onDelete(id: number) {
     if (confirm('A you sure to delete this record ?')) {
       this.paymentDetailService.deletePaymentDetail(id)
-        .subscribe(res => {
+        .subscribe(() => {
           this.paymentDetailService.refreshPaymentDetailsList();
-          this.toaster.warning('Deleted successfully', 'Peyment Detail Register');
-        },
-          err => {
-            console.log('Error ater deleted', err);
-          }
-        );
+          this.toasterService.warning('Deleted successfully', 'Peyment Detail Register');
+        });
     }
   }
 }
