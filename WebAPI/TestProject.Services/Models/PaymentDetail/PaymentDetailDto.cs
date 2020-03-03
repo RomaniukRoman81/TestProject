@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestProject.Services.Models.PaymentDetail
+﻿namespace TestProject.Services.Models.PaymentDetail
 {
-   public class PaymentDetailDto
+    public class PaymentDetailDto
     {
         public int Id { get; set; }
 

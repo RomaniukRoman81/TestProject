@@ -11,6 +11,8 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Text;
 using TestProject.Data.Models;
+using TestProject.Services;
+using TestProject.Services.Implementations;
 
 namespace TestProject.Data
 {
@@ -43,6 +45,8 @@ namespace TestProject.Data
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthenticationContext>();
+
+            services.AddTransient<IPaymentDetailService, PaymentDetailService>();
 
             services.Configure<IdentityOptions>(options =>
             {

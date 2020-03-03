@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestProject.Data.Models;
+using TestProject.Services;
 
 namespace TestProject.Data.Controllers
 {
@@ -12,17 +13,41 @@ namespace TestProject.Data.Controllers
     public class PaymentDetailController : ControllerBase
     {
         private readonly AuthenticationContext _context;
+        private readonly IPaymentDetailService _paymentDetailService;
 
-        public PaymentDetailController(AuthenticationContext context)
+        public PaymentDetailController(AuthenticationContext context,
+                                       IPaymentDetailService paymentDetailService)
         {
             _context = context;
+            _paymentDetailService = paymentDetailService;
         }
 
+
         // GET: api/PaymentDetail
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<PaymentDetail>>> GetPaymentDetails()
+        //{
+        //    return await _context.PaymentDetails.ToListAsync();
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PaymentDetail>>> GetPaymentDetails()
+        public async Task<IActionResult> GetPaymentDetails()
         {
-            return await _context.PaymentDetails.ToListAsync();
+            try
+            {
+                var paymentDetails = await _paymentDetailService.GetAll();
+                if (paymentDetails == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(paymentDetails);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
         }
 
         // GET: api/PaymentDetail/5
