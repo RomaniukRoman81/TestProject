@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestProject.Data.Models;
 using TestProject.Services;
+using TestProject.Services.Models.PaymentDetail;
 
 namespace TestProject.Data.Controllers
 {
@@ -22,20 +23,13 @@ namespace TestProject.Data.Controllers
             _paymentDetailService = paymentDetailService;
         }
 
-
         // GET: api/PaymentDetail
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<PaymentDetail>>> GetPaymentDetails()
-        //{
-        //    return await _context.PaymentDetails.ToListAsync();
-        //}
-
         [HttpGet]
         public async Task<IActionResult> GetPaymentDetails()
         {
             try
             {
-                var paymentDetails = await _paymentDetailService.GetAll();
+                var paymentDetails = await _paymentDetailService.GetAllAsync();
                 if (paymentDetails == null)
                 {
                     return NotFound();
@@ -47,14 +41,13 @@ namespace TestProject.Data.Controllers
             {
                 return BadRequest();
             }
-
         }
 
         // GET: api/PaymentDetail/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PaymentDetail>> GetPaymentDetail(int id)
+        public async Task<ActionResult<PaymentDetailDto>> GetPaymentDetail(int id)
         {
-            var paymentDetail = await _context.PaymentDetails.FindAsync(id);
+            var paymentDetail = await _paymentDetailService.GetByIdAsync(id);
 
             if (paymentDetail == null)
             {
