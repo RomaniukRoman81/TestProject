@@ -38,12 +38,26 @@ namespace TestProject.Services.Implementations
 
         public async Task<PaymentDetailDto> GetByIdAsync(int id)
         {
-            var paymentDetail = await _context.PaymentDetails.FindAsync(id);
-            if (paymentDetail == null)
+            if (_context != null)
             {
-                return null;
+                var paymentDetail = await _context.PaymentDetails.FindAsync(id);
+                if (paymentDetail == null)
+                {
+                    return null;
+                }
+                return MapToEntityDto(paymentDetail);
+
             }
+            return null;
+        }
+
+        public async Task<PaymentDetailDto> AddPaymentDetailAsync(PaymentDetail paymentDetail)
+        {
+            _context.PaymentDetails.Add(paymentDetail);
+            await _context.SaveChangesAsync();
+
             return MapToEntityDto(paymentDetail);
+
         }
 
         private PaymentDetailDto MapToEntityDto(PaymentDetail entity)

@@ -89,7 +89,7 @@ namespace TestProject.Data.Controllers
 
         // POST: api/PaymentDetail
         [HttpPost]
-        public async Task<ActionResult<PaymentDetail>> PostPaymentDetail(PaymentDetail paymentDetail)
+        public async Task<ActionResult<PaymentDetailDto>> PostPaymentDetail(PaymentDetail paymentDetail)
         {
             _context.PaymentDetails.Add(paymentDetail);
             await _context.SaveChangesAsync();
