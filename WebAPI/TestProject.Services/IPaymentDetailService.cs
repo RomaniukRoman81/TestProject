@@ -9,8 +9,14 @@ namespace TestProject.Services
     {
         Task<IEnumerable<PaymentDetailDto>> GetAllAsync();
 
-        Task<PaymentDetailDto> GetByIdAsync(int id);
+        Task<PaymentDetailDto> GetByIdAsync(int paymentDetailId);
 
-        Task<PaymentDetailDto> AddPaymentDetailAsync(PaymentDetail paymentDetail);
+        Task<int> AddPaymentDetailAsync(PaymentDetail paymentDetail);
+
+        Task UpdatePaymentDetailAsync(PaymentDetail paymentDetail);
+
+        Task<int> DeletePaymentDetailAsync(int? paymentDetailId);
+
+        bool PaymentDetailExists(int? paymentDetailId);
     }
 }
