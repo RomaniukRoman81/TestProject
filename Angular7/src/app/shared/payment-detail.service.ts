@@ -19,8 +19,8 @@ export class PaymentDetailService {
   constructor(private http: HttpClient,
               private readonly constants: Constants) { }
 
-  postPaymentDetail() {
-   return this.http.post(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, this.formData);
+  postPaymentDetail(model: PaymentDetail) {
+   return this.http.post(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, model);
   }
 
   putPaymentDetail() {

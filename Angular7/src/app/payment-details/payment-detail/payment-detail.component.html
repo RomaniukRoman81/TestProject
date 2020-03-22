@@ -1,27 +1,24 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+<form [formGroup]="paymentDetailForm" autocomplete="off" (submit)="onSubmit()">
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-prepend">
         <div class="input-group-text bg-white">
-          <i class="far fa-user-circle" [class.red-icon]="CardOwnerName.invalid && CardOwnerName.touched" [class.green-icon]="CardOwnerName.valid"></i>
+          <i class="far fa-user-circle" [ngClass]="{ 'red-icon': f.cardOwnerName.errors && f.cardOwnerName.touched, 'green-icon': f.cardOwnerName.valid }"></i>
         </div>
       </div>
-      <input hidden type="text" name="Id" #Id="ngModel" [(ngModel)]="paymentDetailService.formData.Id"
-      class="form-control">
+      <!-- <input class="form-control" hidden type="text" formControlName="Id"> -->
 
-      <input type="text" name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="paymentDetailService.formData.CardOwnerName"
-        class="form-control" placeholder="Card Owner Name" required>
+      <input class="form-control" formControlName="cardOwnerName" placeholder="Card Owner Name">
     </div>
   </div>
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-prepend">
         <div class="input-group-text bg-white">
-          <i class="far fa-credit-card" [class.red-icon]="CardNumber.invalid && CardNumber.touched" [class.green-icon]="CardNumber.valid"></i>
+          <i class="far fa-credit-card" [ngClass]="{ 'red-icon': f.cardNumber.errors && f.cardNumber.touched, 'green-icon': f.cardNumber.valid }"></i>
         </div>
       </div>
-      <input name="cardNumber" #CardNumber="ngModel" [(ngModel)]="paymentDetailService.formData.CardNumber"
-        class="form-control" placeholder="16 Digit Card Number" required maxlength="16" minlength="16">
+      <input class="form-control" formControlName="cardNumber" placeholder="16 Digit Card Number" maxlength="16">
     </div>
   </div>
   <div class="form-row">
@@ -29,27 +26,25 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text bg-white">
-            <i class="far fa-calendar-alt" [class.red-icon]="ExpirationDate.invalid && ExpirationDate.touched" [class.green-icon]="ExpirationDate.valid"></i>
+            <i class="far fa-calendar-alt" [ngClass]="{ 'red-icon': f.expirationDate.errors && f.expirationDate.touched, 'green-icon': f.expirationDate.valid }"></i>
           </div>
         </div>
-        <input name="expirationDate" #ExpirationDate="ngModel"
-          [(ngModel)]="paymentDetailService.formData.ExpirationDate" class="form-control" placeholder="MM/YY" required maxlength="5" minlength="5">
+        <input class="form-control" formControlName="expirationDate" placeholder="MM/YY" maxlength="5">
       </div>
     </div>
     <div class="form-group col-md-5">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text bg-white">
-            <i class="fas fa-key" [class.red-icon]="CVV.invalid && CVV.touched" [class.green-icon]="CVV.valid"></i>
+            <i class="fas fa-key" [ngClass]="{ 'red-icon': f.cVV.errors && f.cVV.touched, 'green-icon': f.cVV.valid }"></i>
           </div>
         </div>
-        <input type="password" name="cVV" #CVV="ngModel" [(ngModel)]="paymentDetailService.formData.CVV"
-          class="form-control" placeholder="CVV" required maxlength="3" minlength="3">
+        <input class="form-control" type="password" formControlName="cVV" placeholder="CVV" maxlength="3" minlength="3">
       </div>
     </div>
   </div>
   <div class="form-grop">
-    <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit</button>
-    <button type="button" (click)="resetForm(form)">Reset form</button>
-  </div>test data =>{{form.value | json}}
+    <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="paymentDetailForm.invalid"><i class="fas fa-database"></i> Submit</button>
+    <button type="button" (click)="paymentDetailForm.reset()">Reset form</button>
+  </div>test data =>{{paymentDetailForm.value | json}}
 </form>
