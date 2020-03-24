@@ -21,6 +21,7 @@
     <ProjectReference Include="..\TestProject.Controllers\TestProject.Controllers.csproj" />
     <ProjectReference Include="..\TestProject.Data\TestProject.Data.csproj" />
     <ProjectReference Include="..\TestProject.Services\TestProject.Services.csproj" />
+    <ProjectReference Include="..\TestProject.Test\TestProject.Test.csproj" />
   </ItemGroup>
 
 </Project>
