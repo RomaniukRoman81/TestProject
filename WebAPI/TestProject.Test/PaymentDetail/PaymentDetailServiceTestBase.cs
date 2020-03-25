@@ -1,17 +1,27 @@
-﻿using TestProject.Data.Models;
-using TestProject.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using TestProject.Data.Models;
 
 namespace TestProject.Test.PaymentDetail
 {
-    public class PaymentDetailServiceTestBase
+    public class PaymentDetailServiceTestBase : IDisposable
     {
-        private readonly AuthenticationContext _context;
-        public PaymentDetailServiceTestBase(AuthenticationContext context)
+        protected readonly AuthenticationContext _context;
+
+        public PaymentDetailServiceTestBase()
         {
-            _context = context;
+            var options = new DbContextOptionsBuilder<AuthenticationContext>()
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+                .Options;
+
+            _context = new AuthenticationContext(options);
+
+            _context.Database.EnsureCreated();
+
+            CreateTestData(_context);
         }
 
-        protected void CreateTestData()
+        private void CreateTestData(AuthenticationContext context)
         {
             var paymentDetail1 = new TestProject.Data.Models.PaymentDetail
             {
@@ -33,6 +43,12 @@ namespace TestProject.Test.PaymentDetail
 
             _context.AddRange(paymentDetail1, paymentDetail2);
             _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
         }
     }
 }

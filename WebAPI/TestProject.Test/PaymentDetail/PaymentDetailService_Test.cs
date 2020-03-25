@@ -1,29 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using TestProject.Data.Models;
-using TestProject.Services;
+﻿using System.Threading.Tasks;
+using TestProject.Services.Implementations;
+using TestProject.Services.Models.PaymentDetail;
 using Xunit;
 
 namespace TestProject.Test.PaymentDetail
 {
     public class PaymentDetailService_Test : PaymentDetailServiceTestBase
     {
-        private readonly IPaymentDetailService _paymentDetailService;
-
-        public PaymentDetailService_Test(IPaymentDetailService paymentDetailService, AuthenticationContext context) : base(context)
-        {
-            _paymentDetailService = paymentDetailService;
-            CreateTestData();
-        }
 
         [Fact]
-        public async Task Should_Get_All_PaymentDetails_Return_List()
+        public async Task Should_Get_PaymentDetail_ById_Return_Dto()
         {
-            var paymentDetails = await _paymentDetailService.GetAllAsync();
+            // Arrange
+            var paymentDetailsServise = new PaymentDetailService(_context);
+            var testId = 2;
+
+            // Act
+            var result = await paymentDetailsServise.GetByIdAsync(testId);
 
             //Assert  
-            Assert.IsType<OkObjectResult>(paymentDetails);
+            Assert.IsType<PaymentDetailDto>(result);
         }
-
     }
 }
