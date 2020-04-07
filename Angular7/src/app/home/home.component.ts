@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -12,8 +11,7 @@ export class HomeComponent implements OnInit {
   userDetailsFormModel: FormGroup;
   userFullName: string;
 
-  constructor(private router: Router,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               private userService: UserService) { }
 
   ngOnInit() {
@@ -28,11 +26,6 @@ export class HomeComponent implements OnInit {
          AboutMe: res.AboutMe
         });
       });
-  }
-
-  onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/user/login']);
   }
 
   private createUserDetailsForm(): void {
