@@ -8,7 +8,7 @@ using TestProject.Data.Models;
 
 namespace TestProject.Data.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
+    [DbContext(typeof(TestProjectContext))]
     partial class AuthenticationContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

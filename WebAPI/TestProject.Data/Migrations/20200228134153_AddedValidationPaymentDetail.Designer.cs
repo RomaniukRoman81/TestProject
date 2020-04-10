@@ -9,7 +9,7 @@ using TestProject.Data.Models;
 
 namespace TestProject.Data.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
+    [DbContext(typeof(TestProjectContext))]
     [Migration("20200228134153_AddedValidationPaymentDetail")]
     partial class AddedValidationPaymentDetail
     {

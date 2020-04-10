@@ -39,12 +39,12 @@ namespace TestProject.Data
                         (resolver as DefaultContractResolver).NamingStrategy = null;
                 });
 
-            services.AddDbContext<AuthenticationContext>(options =>
+            services.AddDbContext<TestProjectContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<AuthenticationContext>();
+                .AddEntityFrameworkStores<TestProjectContext>();
 
             services.AddTransient<IPaymentDetailService, PaymentDetailService>();
 

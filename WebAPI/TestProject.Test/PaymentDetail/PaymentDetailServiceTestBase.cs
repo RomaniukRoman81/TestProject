@@ -6,22 +6,22 @@ namespace TestProject.Test.PaymentDetail
 {
     public class PaymentDetailServiceTestBase : IDisposable
     {
-        protected readonly AuthenticationContext _context;
+        protected readonly TestProjectContext _context;
 
         public PaymentDetailServiceTestBase()
         {
-            var options = new DbContextOptionsBuilder<AuthenticationContext>()
+            var options = new DbContextOptionsBuilder<TestProjectContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
-            _context = new AuthenticationContext(options);
+            _context = new TestProjectContext(options);
 
             _context.Database.EnsureCreated();
 
             CreateTestData(_context);
         }
 
-        private void CreateTestData(AuthenticationContext context)
+        private void CreateTestData(TestProjectContext context)
         {
             var paymentDetail1 = new TestProject.Data.Models.PaymentDetail
             {

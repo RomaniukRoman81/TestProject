@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TestProject.Data.Models
 {
-    public class AuthenticationContext : IdentityDbContext
+    public class TestProjectContext : IdentityDbContext
     {
-        public AuthenticationContext(DbContextOptions<AuthenticationContext> options) : base(options)
+        public TestProjectContext(DbContextOptions<TestProjectContext> options) : base(options)
         {
 
         }

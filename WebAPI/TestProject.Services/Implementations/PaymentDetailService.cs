@@ -9,9 +9,9 @@ namespace TestProject.Services.Implementations
 {
     public class PaymentDetailService : IPaymentDetailService
     {
-        private readonly AuthenticationContext _context;
+        private readonly TestProjectContext _context;
 
-        public PaymentDetailService(AuthenticationContext context)
+        public PaymentDetailService(TestProjectContext context)
         {
            _context = context;
         }

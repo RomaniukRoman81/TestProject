@@ -9,7 +9,7 @@ using TestProject.Data.Models;
 
 namespace TestProject.Data.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
+    [DbContext(typeof(TestProjectContext))]
     [Migration("20200207144245_AddedPatmentDetail")]
     partial class AddedPatmentDetail
     {
