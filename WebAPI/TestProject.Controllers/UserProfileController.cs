@@ -1,10 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TestProject.Data.Models;
+using TestProject.Services;
+using TestProject.Services.Models.User;
 
 namespace TestProject.Data.Controllers
 {
@@ -13,28 +14,23 @@ namespace TestProject.Data.Controllers
     public class UserProfileController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
-        public UserProfileController(UserManager<ApplicationUser> userManager)
+        private readonly IUserService _userService;
+
+        public UserProfileController(UserManager<ApplicationUser> userManager, IUserService userService)
         {
             _userManager = userManager;
+            _userService = userService;
         }
 
         [HttpGet]
         [Authorize]
         // Get: /api/UserProfile
-        public async Task<Object> GetUserProfile()
+        public async Task<UserDto> GetUserProfile()
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
-            // removed after test
-            user.AboutMe = "test description about me;)";
 
-            return new
-            {
-                user.FullName,
-                user.Email,
-                user.UserName,
-                user.AboutMe
-            };
+            return _userService.GetUserDetail(user);
         }
 
         [HttpGet]

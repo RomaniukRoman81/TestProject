@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaymentDetail } from './payment-detail.model';
+import { PaymentDetailDto } from './PaymenDetailDto';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../constants';
 
@@ -7,25 +7,25 @@ import { Constants } from '../constants';
   providedIn: 'root'
 })
 export class PaymentDetailService {
-  formData: PaymentDetail = {
-    Id: 0,
-    CardOwnerName: '',
-    CardNumber: '',
-    ExpirationDate: '',
-    CVV: ''
+  formData: PaymentDetailDto = {
+    id: 0,
+    cardOwnerName: '',
+    cardNumber: '',
+    expirationDate: '',
+    cVV: ''
   };
-  listPaymentDetails: PaymentDetail[];
+  listPaymentDetails: PaymentDetailDto[];
 
   constructor(private http: HttpClient,
               private readonly constants: Constants) { }
 
-  postPaymentDetail(model: PaymentDetail) {
+  postPaymentDetail(model: PaymentDetailDto) {
    return this.http.post(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, model);
   }
 
   putPaymentDetail() {
    return this.http.put(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}/
-                         ${this.formData.Id}`, this.formData);
+                         ${this.formData.id}`, this.formData);
   }
 
   deletePaymentDetail(id: number) {
@@ -35,7 +35,7 @@ export class PaymentDetailService {
   refreshPaymentDetailsList() {
     this.http.get(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`)
       .subscribe(
-        res => this.listPaymentDetails = res as PaymentDetail[]
+        res => this.listPaymentDetails = res as PaymentDetailDto[]
       );
   }
 }

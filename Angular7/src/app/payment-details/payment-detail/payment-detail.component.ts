@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
-import { PaymentDetail } from 'src/app/shared/payment-detail.model';
+import { PaymentDetailDto } from 'src/app/shared/PaymenDetailDto';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentDetailComponent implements OnInit {
   paymentDetailForm: FormGroup;
-  model: PaymentDetail;
+  model: PaymentDetailDto;
 
 
   constructor(readonly paymentDetailService: PaymentDetailService,
@@ -28,11 +28,11 @@ export class PaymentDetailComponent implements OnInit {
 
   onSubmit() {
     const paymentDetailModel = {
-      Id: this.paymentDetailForm.value.Id,
-      CardOwnerName: this.paymentDetailForm.value.cardOwnerName,
-      CardNumber: this.paymentDetailForm.value.cardNumber,
-      ExpirationDate: this.paymentDetailForm.value.expirationDate,
-      CVV: this.paymentDetailForm.value.cVV
+      id: this.paymentDetailForm.value.Id,
+      cardOwnerName: this.paymentDetailForm.value.cardOwnerName,
+      cardNumber: this.paymentDetailForm.value.cardNumber,
+      expirationDate: this.paymentDetailForm.value.expirationDate,
+      cVV: this.paymentDetailForm.value.cVV
     };
 
     if (this.paymentDetailForm.value.Id === 0) {
@@ -42,7 +42,7 @@ export class PaymentDetailComponent implements OnInit {
     }
   }
 
-  insertForm(model: PaymentDetail) {
+  insertForm(model: PaymentDetailDto) {
     this.paymentDetailService.postPaymentDetail(model).subscribe(
       () => {
         this.paymentDetailForm.reset();

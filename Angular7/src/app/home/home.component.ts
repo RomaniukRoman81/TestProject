@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserDto } from '../shared/UserDto';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +18,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.createUserDetailsForm();
     this.userService.getUserProfile().subscribe(
-      (res: any) => {
-        this.userFullName = res.FullName;
+      (res: UserDto) => {
+        this.userFullName = res.fullName;
         this.userDetailsFormModel.setValue({
-         UserName: res.UserName,
-         FullName: res.FullName,
-         Email: res.Email,
-         AboutMe: res.AboutMe
+         UserName: res.userName,
+         FullName: res.fullName,
+         Email: res.email,
+         AboutMe: res.aboutMe
         });
       });
   }

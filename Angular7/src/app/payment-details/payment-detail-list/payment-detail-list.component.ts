@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
-import { PaymentDetail } from 'src/app/shared/payment-detail.model';
+import { PaymentDetailDto } from 'src/app/shared/PaymenDetailDto';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,7 +17,7 @@ export class PaymentDetailListComponent implements OnInit {
     this.paymentDetailService.refreshPaymentDetailsList();
   }
 
-  populateForm(pd: PaymentDetail) {
+  populateForm(pd: PaymentDetailDto) {
     this.paymentDetailService.formData = Object.assign({}, pd);
   }
 

@@ -47,6 +47,7 @@ namespace TestProject.Data
                 .AddEntityFrameworkStores<TestProjectContext>();
 
             services.AddTransient<IPaymentDetailService, PaymentDetailService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -57,6 +58,9 @@ namespace TestProject.Data
                 options.Password.RequiredLength = 4;
             });
 
+            // return model with property in lowercase
+            services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); });
+            
             services.AddCors();
 
             // JWT Authentification
