@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -31,6 +32,21 @@ namespace TestProject.Data.Controllers
             var user = await _userManager.FindByIdAsync(userId);
 
             return _userService.GetUserDetail(user);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task UpdateUserProfile(UserDto userDto)
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (userId != userDto.Id)
+            {
+                throw new ArgumentException("User Id does not match");
+            }
+
+            await _userService.UpdateUserProfileAsync(user, userDto);
         }
 
         [HttpGet]

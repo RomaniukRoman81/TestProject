@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../constants';
+import { UserDto } from './UserDto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class UserService {
 
   getUserProfile() {
     return this.http.get(this.constants.apiRoutes.workBaseUrl + this.constants.apiRoutes.userProfileUrl);
+  }
+
+  updateUser(userDto: any) {
+      return this.http.put(this.constants.apiRoutes.workBaseUrl + this.constants.apiRoutes.userProfileUrl, userDto);
   }
 
   roleMatch(allowedRoles): boolean {
