@@ -46,8 +46,8 @@ namespace TestProject.Data
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TestProjectContext>();
 
-            services.AddTransient<IPaymentDetailService, PaymentDetailService>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddScoped<IPaymentDetailService, PaymentDetailService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.Configure<IdentityOptions>(options =>
             {
