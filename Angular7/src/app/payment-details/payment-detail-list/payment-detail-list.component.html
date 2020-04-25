@@ -1,10 +1,10 @@
 <table class="table table-hover">
     <tr *ngFor="let pd of paymentDetailService.listPaymentDetails">
-        <td (click)="populateForm(pd)">{{ pd.CardOwnerName }}</td>
-        <td (click)="populateForm(pd)">{{ pd.CardNumber }}</td>
-        <td (click)="populateForm(pd)">{{ pd.ExpirationDate }}</td>
+        <td (click)="populateForm(pd)">{{ pd.cardOwnerName }}</td>
+        <td (click)="populateForm(pd)">{{ pd.cardNumber }}</td>
+        <td (click)="populateForm(pd)">{{ pd.expirationDate }}</td>
         <td>
-            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.Id)"></i>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
         </td>
     </tr>
 </table>

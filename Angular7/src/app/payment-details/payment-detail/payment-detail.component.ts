@@ -47,11 +47,11 @@ export class PaymentDetailComponent implements OnInit {
       () => {
         this.paymentDetailForm.reset();
         this.toasterService.info('Created successfully', 'Peyment Detail Register');
-        // this.paymentDetailService.refreshPaymentDetailsList();
+        this.paymentDetailService.refreshPaymentDetailsList();
       });
   }
 
-  updateForm(form: NgForm) {
+  updateForm(model: PaymentDetailDto) {
     this.paymentDetailService.putPaymentDetail().subscribe(
       () => {
         this.paymentDetailForm.reset();

@@ -46,5 +46,5 @@
   <div class="form-grop">
     <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="paymentDetailForm.invalid"><i class="fas fa-database"></i> Submit</button>
     <button type="button" (click)="paymentDetailForm.reset()">Reset form</button>
-  </div>test data =>{{paymentDetailForm.value | json}}
+  </div>test data =>{{paymentDetailService.formData | json}}
 </form>
