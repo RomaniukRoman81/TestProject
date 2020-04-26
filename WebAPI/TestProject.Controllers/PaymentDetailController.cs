@@ -54,10 +54,10 @@ namespace TestProject.Data.Controllers
         }
 
         // PUT: api/PaymentDetail/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPaymentDetail(int id, PaymentDetail paymentDetail)
+        [HttpPut]
+        public async Task<IActionResult> PutPaymentDetail(PaymentDetail paymentDetail)
         {
-            if (id != paymentDetail.Id)
+            if (paymentDetail == null)
             {
                 return BadRequest();
             }
@@ -68,7 +68,7 @@ namespace TestProject.Data.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_paymentDetailService.PaymentDetailExists(id))
+                if (!_paymentDetailService.PaymentDetailExists(paymentDetail.Id))
                 {
                     return NotFound();
                 }

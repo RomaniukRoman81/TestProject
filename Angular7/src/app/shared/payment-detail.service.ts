@@ -2,34 +2,36 @@ import { Injectable } from '@angular/core';
 import { PaymentDetailDto } from './PaymenDetailDto';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../constants';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentDetailService {
-  formData: PaymentDetailDto = {
-    id: 0,
-    cardOwnerName: '',
-    cardNumber: '',
-    expirationDate: '',
-    cVV: ''
-  };
+
+  formDataSource: BehaviorSubject<PaymentDetailDto> = new BehaviorSubject(new PaymentDetailDto());
+
+  formDataForUpdate = this.formDataSource.asObservable();
+
   listPaymentDetails: PaymentDetailDto[];
 
   constructor(private http: HttpClient,
               private readonly constants: Constants) { }
 
-  postPaymentDetail(model: PaymentDetailDto) {
-   return this.http.post(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, model);
+  updateFormData(data: PaymentDetailDto) {
+    this.formDataSource.next(data);
   }
 
-  putPaymentDetail() {
-   return this.http.put(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}/
-                         ${this.formData.id}`, this.formData);
+  postPaymentDetail(model: PaymentDetailDto) {
+    return this.http.post(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, model);
+  }
+
+  putPaymentDetail(model: PaymentDetailDto) {
+    return this.http.put(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}`, model);
   }
 
   deletePaymentDetail(id: number) {
-   return this.http.delete(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}/${id}`);
+    return this.http.delete(`${this.constants.apiRoutes.workBaseUrl}${this.constants.apiRoutes.paymentDetailUrl}/${id}`);
   }
 
   refreshPaymentDetailsList() {

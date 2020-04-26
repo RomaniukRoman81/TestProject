@@ -6,7 +6,7 @@
           <i class="far fa-user-circle" [ngClass]="{ 'red-icon': f.cardOwnerName.errors && f.cardOwnerName.touched, 'green-icon': f.cardOwnerName.valid }"></i>
         </div>
       </div>
-      <!-- <input class="form-control" hidden type="text" formControlName="Id"> -->
+      <input class="form-control" hidden type="text" formControlName="id">
 
       <input class="form-control" formControlName="cardOwnerName" placeholder="Card Owner Name">
     </div>
@@ -46,5 +46,5 @@
   <div class="form-grop">
     <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="paymentDetailForm.invalid"><i class="fas fa-database"></i> Submit</button>
     <button type="button" (click)="paymentDetailForm.reset()">Reset form</button>
-  </div>test data =>{{paymentDetailService.formData | json}}
+  </div>
 </form>

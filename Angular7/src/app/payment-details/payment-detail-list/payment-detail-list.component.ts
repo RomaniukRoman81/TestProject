@@ -18,7 +18,7 @@ export class PaymentDetailListComponent implements OnInit {
   }
 
   populateForm(pd: PaymentDetailDto) {
-    this.paymentDetailService.formData = Object.assign({}, pd);
+    this.paymentDetailService.updateFormData(pd);
   }
 
   onDelete(id: number) {

@@ -11,16 +11,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentDetailComponent implements OnInit {
   paymentDetailForm: FormGroup;
-  model: PaymentDetailDto;
-
 
   constructor(readonly paymentDetailService: PaymentDetailService,
               private fb: FormBuilder,
               private toasterService: ToastrService) {  }
 
   ngOnInit() {
-   // this.model = this.paymentDetailService.formData;
    this.createPaymentDetailForm();
+   this.paymentDetailService.formDataForUpdate.subscribe(
+     res => this.paymentDetailForm.patchValue(res)
+   );
   }
 
   // convenience getter for easy access to form fields
@@ -28,17 +28,17 @@ export class PaymentDetailComponent implements OnInit {
 
   onSubmit() {
     const paymentDetailModel = {
-      id: this.paymentDetailForm.value.Id,
+      id: this.paymentDetailForm.value.id,
       cardOwnerName: this.paymentDetailForm.value.cardOwnerName,
       cardNumber: this.paymentDetailForm.value.cardNumber,
       expirationDate: this.paymentDetailForm.value.expirationDate,
       cVV: this.paymentDetailForm.value.cVV
     };
 
-    if (this.paymentDetailForm.value.Id === 0) {
+    if (this.paymentDetailForm.value.id === 0) {
       this.insertForm(paymentDetailModel);
     } else {
-      // this.updateForm(form);
+      this.updateForm(paymentDetailModel);
     }
   }
 
@@ -46,15 +46,17 @@ export class PaymentDetailComponent implements OnInit {
     this.paymentDetailService.postPaymentDetail(model).subscribe(
       () => {
         this.paymentDetailForm.reset();
+        this.paymentDetailForm.get('id').setValue(0);
         this.toasterService.info('Created successfully', 'Peyment Detail Register');
         this.paymentDetailService.refreshPaymentDetailsList();
       });
   }
 
   updateForm(model: PaymentDetailDto) {
-    this.paymentDetailService.putPaymentDetail().subscribe(
+    this.paymentDetailService.putPaymentDetail(model).subscribe(
       () => {
         this.paymentDetailForm.reset();
+        this.paymentDetailForm.get('id').setValue(0);
         this.toasterService.info('Updated successfully', 'Peyment Detail Register');
         this.paymentDetailService.refreshPaymentDetailsList();
       });
@@ -62,7 +64,7 @@ export class PaymentDetailComponent implements OnInit {
 
   private createPaymentDetailForm(): void {
     this.paymentDetailForm = this.fb.group({
-      Id: [0],
+      id: [0],
       cardOwnerName: ['', Validators.required],
       cardNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
       expirationDate: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
