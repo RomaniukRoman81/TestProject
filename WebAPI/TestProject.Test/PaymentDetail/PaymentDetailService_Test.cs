@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using TestProject.Services.Implementations;
 using TestProject.Services.Models.PaymentDetail;
 using Xunit;
@@ -8,12 +9,13 @@ namespace TestProject.Test.PaymentDetail
 {
     public class PaymentDetailService_Test : PaymentDetailServiceTestBase
     {
+        private readonly IMapper _mapper;
 
         [Fact]
         public async Task Should_Get_All_PaymentDetail_Return_List()
         {
             // Arrange            
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
 
             // Act
             var result = await paymentDetailsServise.GetAllAsync();
@@ -26,7 +28,7 @@ namespace TestProject.Test.PaymentDetail
         public async Task Should_Get_PaymentDetail_ById_Return_Dto()
         {
             // Arrange
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
             var testId = 2;
 
             // Act
@@ -40,7 +42,7 @@ namespace TestProject.Test.PaymentDetail
         public async Task Should_Add_PaymentDetail_Return_Id()
         {
             // Arrange
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
             var testPD = new TestProject.Data.Models.PaymentDetail
             {
                 Id = 3,
@@ -61,7 +63,7 @@ namespace TestProject.Test.PaymentDetail
         public async Task Should_Delete_PaymentDetail_Return_Success()
         {
             // Arrange
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
             var testId = 1;
 
             // Act
@@ -75,7 +77,7 @@ namespace TestProject.Test.PaymentDetail
         public async Task Should_Delete_PaymentDetail_Return_Error()
         {
             // Arrange
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
             var testId = 3;
 
             // Act
@@ -89,7 +91,7 @@ namespace TestProject.Test.PaymentDetail
         public void Should_PaymentDetail_Exists_Return_True()
         {
             // Arrange
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
             var testId = 2;
 
             // Act
@@ -103,7 +105,7 @@ namespace TestProject.Test.PaymentDetail
         public void Should_PaymentDetail_Exists_Return_False()
         {
             // Arrange
-            var paymentDetailsServise = new PaymentDetailService(_context);
+            var paymentDetailsServise = new PaymentDetailService(_context, _mapper);
             var testId = 3;
 
             // Act

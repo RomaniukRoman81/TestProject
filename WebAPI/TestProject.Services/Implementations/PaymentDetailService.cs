@@ -4,16 +4,25 @@ using System.Threading.Tasks;
 using TestProject.Data.Models;
 using TestProject.Services.Models.PaymentDetail;
 using System.Linq;
+using AutoMapper;
 
 namespace TestProject.Services.Implementations
 {
     public class PaymentDetailService : IPaymentDetailService
     {
         private readonly TestProjectContext _context;
+        private readonly IMapper _mapper;
+        private TestProjectContext context;
+
+        public PaymentDetailService(TestProjectContext context, IMapper mapper)
+        {
+           _context = context;
+            _mapper = mapper;
+        }
 
         public PaymentDetailService(TestProjectContext context)
         {
-           _context = context;
+            this.context = context;
         }
 
         // use async if we are expecting more count users
@@ -44,7 +53,12 @@ namespace TestProject.Services.Implementations
                 {
                     return null;
                 }
-                return MapToEntityDto(paymentDetail);
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<PaymentDetail, PaymentDetailDto>());
+                var maper = config.CreateMapper();
+                PaymentDetailDto test = maper.Map<PaymentDetailDto>(paymentDetail);
+                // var test = _mapper.Map<PaymentDetailDto>(paymentDetail);
+                // PaymentDetailDto test1 = MapToEntityDto(paymentDetail);
+                return test;
 
             }
             return null;

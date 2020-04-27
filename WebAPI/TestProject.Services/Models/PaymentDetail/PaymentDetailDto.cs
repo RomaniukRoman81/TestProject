@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public string CardOwnerName { get; set; }
+        public string CardOwnerName { get; set; }             
 
         public string CardNumber { get; set; }
 

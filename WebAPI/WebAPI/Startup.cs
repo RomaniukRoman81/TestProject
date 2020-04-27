@@ -13,6 +13,7 @@ using System.Text;
 using TestProject.Data.Models;
 using TestProject.Services;
 using TestProject.Services.Implementations;
+using AutoMapper;
 
 namespace TestProject.Data
 {
@@ -30,6 +31,9 @@ namespace TestProject.Data
         {
             // Inject AppSettings
             services.Configure<ApplicationSettings>(Configuration.GetSection("AplicationSettings"));
+
+            // TODO fix config
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
