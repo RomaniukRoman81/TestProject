@@ -14,6 +14,7 @@ using TestProject.Data.Models;
 using TestProject.Services;
 using TestProject.Services.Implementations;
 using AutoMapper;
+using TestProject.API;
 
 namespace TestProject.Data
 {
@@ -52,6 +53,7 @@ namespace TestProject.Data
 
             services.AddScoped<IPaymentDetailService, PaymentDetailService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddSingleton<IChatRoomService, ChatRoomService>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -61,6 +63,8 @@ namespace TestProject.Data
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 4;
             });
+
+            services.AddSignalR();
 
             // return model with property in lowercase
             services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); });
@@ -100,11 +104,16 @@ namespace TestProject.Data
             }
 
             app.UseCors(buider =>
-            buider.WithOrigins(Configuration["AplicationSettings:Client_URL"].ToString())
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+                buider.WithOrigins(Configuration["AplicationSettings:Client_URL"].ToString())
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 
             app.UseAuthentication();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
 
             app.UseMvc();
         }
