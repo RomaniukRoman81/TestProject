@@ -113,6 +113,7 @@ namespace TestProject.Data
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chatHub");
+                routes.MapHub<AgentHub>("/agentHub");
             });
 
             app.UseMvc();
