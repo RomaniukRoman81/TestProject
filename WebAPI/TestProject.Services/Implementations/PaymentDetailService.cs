@@ -53,13 +53,9 @@ namespace TestProject.Services.Implementations
                 {
                     return null;
                 }
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<PaymentDetail, PaymentDetailDto>());
-                var maper = config.CreateMapper();
-                PaymentDetailDto test = maper.Map<PaymentDetailDto>(paymentDetail);
-                // var test = _mapper.Map<PaymentDetailDto>(paymentDetail);
-                // PaymentDetailDto test1 = MapToEntityDto(paymentDetail);
-                return test;
+                 var pdDto = _mapper.Map<PaymentDetailDto>(paymentDetail);
 
+                return pdDto;
             }
             return null;
         }
@@ -111,20 +107,6 @@ namespace TestProject.Services.Implementations
         public bool PaymentDetailExists(int? id)
         {
             return _context.PaymentDetails.Any(e => e.Id == id);
-        }
-
-        private PaymentDetailDto MapToEntityDto(PaymentDetail entity)
-        {
-            var paymentDetail = new PaymentDetailDto
-            {
-                Id = entity.Id,
-                CardOwnerName = entity.CardOwnerName,
-                CardNumber = entity.CardNumber,
-                CVV = entity.CVV,
-                ExpirationDate = entity.ExpirationDate
-            };
-
-            return paymentDetail;
         }
     }
 }
