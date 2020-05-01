@@ -12,17 +12,11 @@ namespace TestProject.Services.Implementations
     {
         private readonly TestProjectContext _context;
         private readonly IMapper _mapper;
-        private TestProjectContext context;
 
         public PaymentDetailService(TestProjectContext context, IMapper mapper)
         {
            _context = context;
-            _mapper = mapper;
-        }
-
-        public PaymentDetailService(TestProjectContext context)
-        {
-            this.context = context;
+           _mapper = mapper;
         }
 
         // use async if we are expecting more count users

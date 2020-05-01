@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TestProject.Controllers.Models
+namespace TestProject.Services.Models
 {
     public class OpenWeatherResponse
     {

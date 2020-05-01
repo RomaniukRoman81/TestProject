@@ -54,6 +54,7 @@ namespace TestProject.Data
             services.AddScoped<IPaymentDetailService, PaymentDetailService>();
             services.AddScoped<IUserService, UserService>();
             services.AddSingleton<IChatRoomService, ChatRoomService>();
+            services.AddScoped<IWeatherService, WeatherService>();
 
             services.Configure<IdentityOptions>(options =>
             {
