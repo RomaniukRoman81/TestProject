@@ -11,6 +11,7 @@ import { ImagesComponent } from './images/images.component';
 import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
 import { Constants } from './constants';
+import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: Constants.angularRoutes.weather,
+    component: WeatherComponent
+  },
+  {
     path: Constants.angularRoutes.home,
     component: HomeComponent,
     canActivate: [AuthGuard]
@@ -60,7 +65,8 @@ const routes: Routes = [
     data: {
       permittedRoles: [Constants.roles.admin]
     }
-  }
+  },
+  { path: '**', redirectTo: Constants.angularRoutes.home }
 ];
 
 @NgModule({

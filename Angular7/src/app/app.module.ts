@@ -29,6 +29,7 @@ import { ImageService } from './shared/image.service';
 import { Constants } from './constants';
 import { HttpErrorInterceptor } from './http-error.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     ImagesComponent,
     ImageComponent,
     ImageListComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    WeatherComponent,
   ],
   imports: [
     BrowserModule,

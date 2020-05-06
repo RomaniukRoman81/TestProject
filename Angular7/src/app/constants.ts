@@ -11,6 +11,7 @@ export class Constants {
         upload: 'upload',
         list: 'list',
         paymentDetail: 'paymentDetail',
+        weather: 'weather',
         home: 'home',
         forbidden: 'forbidden',
         adminPanel: 'adminPanel'
@@ -49,6 +50,7 @@ export interface IAngularRoutes {
     upload: string;
     list: string;
     paymentDetail: string;
+    weather: string;
     home: string;
     forbidden: string;
     adminPanel: string;
