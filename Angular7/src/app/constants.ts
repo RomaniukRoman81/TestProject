@@ -37,7 +37,8 @@ export class Constants {
         userRegisterUrl: '/api/ApplicationUser/Register',
         userLoginUrl: '/api/ApplicationUser/Login',
         userProfileUrl: '/api/UserProfile',
-        paymentDetailUrl: '/api/PaymentDetail'
+        paymentDetailUrl: '/api/PaymentDetail',
+        weatherUrl: '/api/Weather/'
     };
 }
 
@@ -63,6 +64,7 @@ export interface IApiRoutes {
     userLoginUrl: string;
     userProfileUrl: string;
     paymentDetailUrl: string;
+    weatherUrl: string;
 }
 
 export interface IFireBase {
