@@ -6,9 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-payment-detail-list',
   templateUrl: './payment-detail-list.component.html',
-  styles: []
+  styleUrls: ['./payment-detail-list.scss']
 })
 export class PaymentDetailListComponent implements OnInit {
+
+  searchPayment: string;
 
   constructor( readonly paymentDetailService: PaymentDetailService,
                private toasterService: ToastrService) { }

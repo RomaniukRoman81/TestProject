@@ -30,6 +30,7 @@ import { Constants } from './constants';
 import { HttpErrorInterceptor } from './http-error.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { WeatherComponent } from './weather/weather.component';
+import { SearchPaymentPipe } from './shared/pipes/search-payment.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { WeatherComponent } from './weather/weather.component';
     ImageListComponent,
     NavMenuComponent,
     WeatherComponent,
+    SearchPaymentPipe,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,6 @@ import { WeatherComponent } from './weather/weather.component';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true
-
     },
     PaymentDetailService,
     Constants
