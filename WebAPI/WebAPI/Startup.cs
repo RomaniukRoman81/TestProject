@@ -56,6 +56,8 @@ namespace TestProject.Data
             services.AddSingleton<IChatRoomService, ChatRoomService>();
             services.AddScoped<IWeatherService, WeatherService>();
 
+            services.AddResponseCaching();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -110,6 +112,8 @@ namespace TestProject.Data
                 .AllowAnyMethod());
 
             app.UseAuthentication();
+
+            app.UseResponseCaching();
 
             app.UseSignalR(routes =>
             {

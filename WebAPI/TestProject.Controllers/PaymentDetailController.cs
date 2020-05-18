@@ -21,6 +21,7 @@ namespace TestProject.Data.Controllers
 
         // GET: api/PaymentDetail
         [HttpGet]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetPaymentDetails()
         {
             try
